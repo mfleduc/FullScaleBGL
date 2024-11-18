@@ -21,7 +21,7 @@ load('mean of beta algorithm residual transform alt final.mat' , ...
 %     'FSBGL results 4 levels time 1 lambda 0.2500 covmodel 3 MixOfWendlandCov.mat',...
 %     'FSBGL results 4 levels time 1 lambda 0.5000 covmodel 3 MixOfWendlandCov.mat',...
 %     'FSBGL results 4 levels time 1 lambda 1.0000 covmodel 3 MixOfWendlandCov.mat'} ;
-files = dir('FSBGL Nugget first/1Wendland/FSBGL results 3 levels time 1 lambda *.mat');
+files = dir('FSBGL Nugget first/Mix GC/FSBGL results 3 levels time 1 lambda *.mat');
 % files = dir('FSBGL Nugget first/FSBGL results 3 levels time 1 lambda * covmodel WendlandCov nugg first.mat');
 files = fullfile({files(1:end).folder},{files(1:end).name});
 likelihoods = [];
@@ -36,8 +36,8 @@ for kk = 1:length(files)
     [spx,spy,spz] = sph2cart(pi/180*LONd, pi/180*LATd,1);
     spc=[spx,spy,spz];
     d = real(acosd(spc*spc') );% 
-    % d = 2*sind(d/2) ;
-    % covmodel = @(x)gentemp([x(1:2),-0.1],d); %+gentemp([x(3:4),-0.1],d)  ;
+    d = 2*sind(d/2) ;
+    covmodel = @(x)gentemp([x(1:2),-0.1],d)+gentemp([x(3:4),-0.1],d)  ;
     Ahat = A(testset,1:size(data{kk}.Qest{1},1));
     if length(data{kk}.np(1,:))==4
         npndcs = 2:4;
@@ -61,5 +61,5 @@ for kk = 1:length(data)
 end
 aic = (2*ks+2*nll);
 
-save('FSBGL Nugget first/1Wendland/CV results 1Wendland 3 levels.mat', 'ndcs', 'aic','data','likelihoods','ks','lambdas');
+save('FSBGL Nugget first/Mix GC/CV results Mix GC 3 levels.mat', 'ndcs', 'aic','data','likelihoods','ks','lambdas');
 % end
