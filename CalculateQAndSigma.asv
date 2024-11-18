@@ -1,0 +1,40 @@
+function [Qest, noisemodel] = CalculateQAndSigma(Y,Phi,  lambda, tolerance,covmodel, optparams, precisionflag)
+%UNTITLED4 Summary of this function goes here
+%   Use if you are directly modeling Sigma, not Sigma^{-1}
+%TODO: Detailed explanation
+% stdevdiag = diag(stdevprofile);
+del = tolerance+1;
+p = size(Phi, 2); %Number of basis fns
+maxiters = 1;
+Qs = {} ; Qs{1} = eye(p) ;
+penalty = lambda*(ones(p)-eye(p)) ;
+np0 = optparams.x0;
+np = zeros(maxiters+1, length(np0));
+np(1,:) = np0;
+Sigma = covmodel(np0);
+% dbstop if nan
+fprintf('Calculating Q|Sigma...');
+for kk = 1:maxiters
+    fprintf('Linearizing\n')
+    Sstar = LinearizeProblem(Y,Phi, Sigma,Qs{kk}, precisionflag );
+    fprintf('Solving at iteration %d \n',kk);
+    % keyboard
+    
+    Qs{kk+1} = QUIC(Sstar, penalty, 1e-3);
+    if any(isnan(Qs{kk+1}))
+       keyboard
+    end
+     del = norm(Qs{kk+1}-Qs{kk},'fro')/norm(Qs{kk},'fro');
+    if del < tolerance
+        fprintf('Tolerance reached: del = %.5f \n', del);
+        break
+    else
+        fprintf('Tolerance not reached, del = %.5f\n', del);
+    end
+end
+fprintf('Done\n');
+fprintf('Calculating Sigma|Q...');
+np = CalculateSigma(covmodel, Qs{kk+1}, Phi, Y, optparams, precisionflag) ;
+fprintf('Done\n');
+Qest = Qs{kk+1} ;noisemodel = np ;
+end
