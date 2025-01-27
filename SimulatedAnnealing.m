@@ -52,9 +52,9 @@ for ii = 1:maxiters
     end
 end
 optval = x0 ;
-if ii ~=maxiters
-    fprintf(['iteration %d, params [',repmat('%g, ', 1, numel(x0)-1),'%g]\n'], ii,paramvec)
-end
+
+fprintf(['iteration %d, params [',repmat('%g, ', 1, numel(x0)-1),'%g]\n'], ii,paramvec)
+
 ps = ps(1:ii);
 end
 

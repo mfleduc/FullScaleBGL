@@ -80,10 +80,10 @@ for l1 = 1:length(lambdas) %% cross-validate for each lambda
         Ahat = A(thesendcs,1:nneeds(lvls));    
         thisdata = data(thesendcs,:);
         [Qest{nn}] = CalculateQ(thisdata, Ahat, lambda, ...
-            2e-2,covmodel{nn},np(nn,2:end), strcmpi(fnname,'MarkovRandomField') );
+            1e-2,covmodel{nn},np(nn,2:end), strcmpi(fnname,'MarkovRandomField') );
     end
     
-         save(sprintf('FSBGL Nugget first/GC/FSBGL results %d levels time %d lambda %.4f covmodel gentemp.mat',lvls,timendx,lambda ),...
+         save(sprintf('FSBGL Nugget first/GC/lower tolerance/FSBGL results %d levels time %d lambda %.4f covmodel gentemp.mat',lvls,timendx,lambda ),...
         'Qest', 'np', 'optparams', 'timendx','covmodel','lambda','ndcs','nptseach','-v7.3')
 end
 

@@ -27,18 +27,18 @@ switch optparams.algorithm
             for ii = 1:nparams
                 [~,x0(ii)] = min(abs(paramranges(ii,:)-optparams.x0(ii)));
             end
-            x0=[50,x0];
+            x0=[250,x0];
         else 
             x0=[];
         end
-        paramranges = [linspace(0.000001,10,optparams.npts);paramranges];
+        paramranges = [linspace(0.0001,100,optparams.npts);paramranges];
         [optval, objvals,pvec] = SimulatedAnnealing(objectiveFn, paramranges, optparams.maxiters, optparams.pchange,0.005 ,x0);
         output = [];
         for ii = 1:nparams
             output(ii) = paramranges(ii,optval(ii));
         end
-    otherwise 
-        error('Only simulated annealing is implemented')
+    case 'fmincon'
+        [output, objvals] = fmincon(objectiveFn,optparams.x0,[],[],[],[], optparams.ranges(:,1),optparams.ranges(:,2));
 end
 
 

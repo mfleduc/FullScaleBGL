@@ -29,8 +29,8 @@ data = data(:,:,timendx)./std(data(:,:,timendx),[],2);
 optparams = struct; 
 optparams.algorithm='simanneal';
 optparams.ranges = [[-10,1];%log10(tau^2)
-                    % [1, 20];%theta1
-                    % [0.01,1];%alpha1
+                    [1, 20];%theta1
+                    [0.01,1];%alpha1
                     [1,20];%theta2
                     [0.01,1];%alpha2
                     [1,20];%theta3

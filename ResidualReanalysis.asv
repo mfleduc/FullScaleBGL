@@ -1,0 +1,27 @@
+function ResidualReanalysis()
+%% Checking whether the residual models change significantly if you recalculate the parameters knowing Q
+% From Mitch: They don't change. I am doubtful.
+cd('/glade/work/mleduc/GP emulation/needlet fbgl');
+addpath('/glade/work/mleduc/GP emulation/needlet fbgl/NeedletBGL');
+files = dir('FSBGL Nugget first/3Wendlands/FSBGL results 3 levels*.mat');
+files = fullfile(files(1).folder,{files(1:end).name});
+cvres = load('FSBGL Nugget first/3Wendlands/CV results 3Wendlands 3 levels.mat');
+
+load(sprintf('needlets degree resolution j=5.mat'), 'A');
+load('mean of beta algorithm residual transform alt final.mat'  ...
+    ,'testdata','LAT', 'LON' );
+keyboard
+
+%load each file
+for ff = 1:length(files)
+    data = load(files{ff},'Qest','ndcs','optparams','np','covmodel','nptseach','ndcs','lambda');
+    lambdandx = find(data.lambda == cvres.lambdas);
+    Q = data.Qest{cvres.ndcs(lambdandx)};
+    np = data.np(lambdandx,:);data.optparams.x0 = np;
+    trainset = cvres.ndcs(lambdandx)*data.nptseach+1: (cvres.ndcs(lambdandx)+1)*data.nptseach ;
+
+
+end
+
+
+end

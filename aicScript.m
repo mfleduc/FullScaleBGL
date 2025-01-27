@@ -8,5 +8,9 @@
 % title('AIC,FSBGL Mix of Wendland')
 % CalculateAIC(files2,cv2);
 files = dir('/glade/work/mleduc/GP emulation/needlet fbgl/FSBGL Nugget first/MRF/FSBGL results 3 levels*.mat');
+% files = dir('/glade/work/mleduc/GP emulation/needlet fbgl/FSBGL Nugget first/nugget cov/BGL results 3 levels*.mat');
+
+% files = dir('/glade/work/mleduc/GP emulation/needlet fbgl/FSBGL Nugget first/PGL/PGL results 3 levels * MixOfWendland.mat');
 files = fullfile(files(1).folder,{files(1:end).name});
-CalculateAIC(files)
+
+CalculateAIC(files,[],0)

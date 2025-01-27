@@ -48,18 +48,18 @@ fnname = fnname(1:ndx-1);
 %% 
 optparams = struct; 
 optparams.algorithm= 'simanneal';
-optparams.ranges = [[0.001,5];%kappa
-                    [0.001, 3]];%1/alpha
+optparams.ranges = [...
+                    [0.0001,10];%kappa
+                    [-8,1]];%1/alpha for MRF
 % optparams.ranges = [-10,1];
 optparams.maxiters = 1000; %number of simulated annealing steps
 optparams.npts = 501; %Number of lattice points
-optparams.x0 = [0.5,1.5];%Initial guess
+optparams.x0 = [4, -4];%Initial guess
 optparams.pchange = 0.9;
 
 A = [ones(64800,1)/2/sqrt(pi), A]; Ahat = A(:,1:nneeds(lvl));
-for lambda = lambdas
-    
-    [val,obj,np] = CalculateInitialGuess(covmodel, Ahat,data, optparams);
+[val,obj,np] = CalculateInitialGuess(covmodel, Ahat,data, optparams);
+for lambda = lambdas       
     alpha = np(1);
     [Qest] = CalculateQ(data, Ahat, lambda, 1e-2,covmodel,np(2:end), 1 );
     save(sprintf('FSBGL Nugget first/MRF/FSBGL results %d levels time %d lambda %.4f covmodel %s.mat',lvl,timendx,lambda , fnname),'alpha', 'Qest', 'np', 'optparams', 'timendx','covmodel','lambda','-v7.3')
