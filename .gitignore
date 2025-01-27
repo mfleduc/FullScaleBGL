@@ -2,4 +2,8 @@
 *.pdf
 *.jpg
 *.png
+aicScript.m
+calculateCRPS.m
+simulateSplitModel.m
+simulateWithWendland.m
 
