@@ -4,7 +4,7 @@ The run script is Run scripts/exampleScript.m. Running the model as done in the 
 
 If you wish to use your own basis functions, these packages are unnecessary. 
 
-Currently, a new function called fullScaleBGLXXX.m is used for each model of Z_2. This is easily changed, and I will do so as soon as I am able.
+Currently, a new function called fullScaleBGLXXX.m is used for each model of Z_2. This is easily changed, and I will do so as soon as I am able and have decided how I want to handle passing in the optimization parameters. Right now they are defined in each function individually, which is a bit inelegant but at least makes it easy to find them?
 
 The code for logdet.m comes from 
 Dahua Lin (2025). Safe computation of logarithm-determinat of large matrix (https://www.mathworks.com/matlabcentral/fileexchange/22026-safe-computation-of-logarithm-determinat-of-large-matrix), MATLAB Central File Exchange.
