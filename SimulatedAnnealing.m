@@ -12,7 +12,7 @@ for ii = 1:numvars
     paramvec(ii) = paramranges(ii,x0(ii));
 end
 ps(1) = fn(paramvec);
-maxstuck = 10;
+maxstuck = 20;
 stuckcnt = 0;
 for ii = 1:maxiters
   
