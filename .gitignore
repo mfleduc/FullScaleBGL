@@ -6,4 +6,5 @@ aicScript.m
 calculateCRPS.m
 simulateSplitModel.m
 simulateWithWendland.m
+results/*
 
