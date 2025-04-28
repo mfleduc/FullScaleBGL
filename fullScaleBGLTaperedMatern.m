@@ -1,8 +1,6 @@
 %% Full scale basis graphical lasso
 function fullScaleBGLTaperedMatern(lambdas,lvls)
 % clear variables; close all;
-%% Full scale basis graphical lasso
-% clear variables; close all;
 fprintf('Running Full-Scale Basis Graphical Lasso with %d levels of resolution and lambdas %.4f to %.4f\n'...
     ,lvls,lambdas(1),lambdas(end))
 % nneeds = [12,60,252,1020]+1;
