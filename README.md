@@ -10,4 +10,4 @@ The code for logdet.m comes from
 Dahua Lin (2025). Safe computation of logarithm-determinat of large matrix (https://www.mathworks.com/matlabcentral/fileexchange/22026-safe-computation-of-logarithm-determinat-of-large-matrix), MATLAB Central File Exchange.
 
 If you use the code, please cite the paper Modeling Large Nonstationary Spatial Data
-with the Full-Scale Basis Graphical Lasso (URL coming soon)
+with the Full-Scale Basis Graphical Lasso (https://arxiv.org/abs/2505.01318). The paper is currently under review.
