@@ -7,21 +7,22 @@ fprintf('*******TAPERED MATERN********\n');
 optparams = struct; 
 optparams.algorithm='simanneal';
 optparams.ranges = [[-3,3];%log10(tau^2)
-                    [0.01,20];%sigma^2
-                       [0.1,100];%Taper range
+                    [0.001,10];%sigma^2
+                       [0.001,2];%Taper range
                        [0.1,1];%Smoothness
-                       [0.1,100]];%Matern range
+                       [0.001,4]];%Matern range
 % optparams.ranges = [-10,1];
 optparams.maxiters = 5000; %number of simulated annealing steps
 optparams.npts = 501; %Number of lattice points
-optparams.x0 = [0, 10, 20, 0.5, 20];%Initial guess
-optparams.pchange = 0.9;
+optparams.x0 = [0, 1, 1, 0.5, 1];%Initial guess
+optparams.pchange = 0.95;
 fprintf('********************Fitting residual model**********************\n');
 
-[spx,spy,spz] = sph2cart(pi/180*input.LON(:), pi/180*input.LAT(:),1);
-spc=[spx,spy,spz];
-d = real(acosd(spc*spc')) ; %d = d - diag(diag(d));
-%imaginary values on the diagonal sometimes        
+% [spx,spy,spz] = sph2cart(pi/180*input.LON(:), pi/180*input.LAT(:),1);
+% spc=[spx,spy,spz];
+% d = real(acosd(spc*spc')) ; %d = d - diag(diag(d));
+%imaginary values on the diagonal sometimes 
+d = sqrt(abs(input.LAT(:)-input.LAT(:)').^2+abs(input.LON(:)-input.LON(:)').^2);
 covmodel = @(x)TaperedMatern( d,x);
 fnname = func2str(covmodel);
 fnname = fnname(5:end);

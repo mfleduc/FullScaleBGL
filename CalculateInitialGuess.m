@@ -31,7 +31,7 @@ switch optparams.algorithm
         else 
             x0=[];
         end
-        paramranges = [linspace(0.0001,100,optparams.npts);paramranges];
+        paramranges = [linspace(0.0001,10,optparams.npts);paramranges];
         [optval, objvals,pvec] = SimulatedAnnealing(objectiveFn, paramranges, optparams.maxiters, optparams.pchange,0.005 ,x0);
         output = [];
         for ii = 1:nparams
