@@ -1,4 +1,4 @@
-function Corr = gentemp (params,r)    
+function Corr = gentemp (params,r,varargin)    
 %
 %  Typical usage: c = 3000;  r = 0:1:6000;     
 %                 Corr = genspline0(r,c,.5);     (yields Eqn. 4.10 of Gaspari & Cohn (1999)
@@ -65,7 +65,10 @@ i = find(1.5 < z & z <= 2.);
  Corr(i) = 4*b*b.* (-120*z(i).*z(i) - 16 + 96*z(i) ...
      + 40*z(i).^3 + 2*z(i).^6 - 12*z(i).^5 + 15*z(i).^4 );
  Corr(i) = Corr(i)./(3*z(i)*norm);
-
+if ~isempty(varargin )
+Corr = params(1)*sparse(Corr)+speye(size(z))*10^varargin{1};
+else
 Corr = params(1)*sparse(Corr);
+end
 end
 
