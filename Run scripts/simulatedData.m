@@ -6,10 +6,11 @@ disp(cd)
 fprintf("%d samples of the simulated field\n", nSamples)
 % clear variables;close all;clc;
 %% Adding paths to required external code
-needmatPath = '/glade/work/mleduc/Ionosphere_inversion/NeedMat/'; %Path to NeedMat 
-sphereptsPath = '/glade/work/mleduc/Ionosphere_inversion/spherepts/';%Path to spherepts
-shtPath = '/glade/work/mleduc/Ionosphere_inversion/Spherical-Harmonic-Transform/';%Path to Spherical-Harmonic-Transform;
-quicPath = '/glade/work/mleduc/MultivariateBasisGraphicalLasso/src/QUIC/';%Path to QUIC;
+dirPath = '/home/male7736/Desktop/Research/';
+needmatPath = fullfile(dirPath,'NeedMat'); %Path to NeedMat 
+sphereptsPath = fullfile(dirPath,'spherepts');%Path to spherepts
+shtPath = fullfile(dirPath,'Spherical-Harmonic-Transform');%Path to Spherical-Harmonic-Transform;
+quicPath = fullfile(dirPath,'MultivariateBasisGraphicalLasso/src/QUIC/');%Path to QUIC;
 addpath(genpath(needmatPath));
 addpath(genpath(sphereptsPath));
 addpath(genpath(shtPath));
