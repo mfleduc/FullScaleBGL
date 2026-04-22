@@ -6,7 +6,7 @@ disp(cd)
 fprintf("%d samples of the simulated field\n", nSamples)
 % clear variables;close all;clc;
 %% Adding paths to required external code
-dirPath = '/home/male7736/Desktop/Research/';
+dirPath = '';
 needmatPath = fullfile(dirPath,'NeedMat'); %Path to NeedMat 
 sphereptsPath = fullfile(dirPath,'spherepts');%Path to spherepts
 shtPath = fullfile(dirPath,'Spherical-Harmonic-Transform');%Path to Spherical-Harmonic-Transform;
