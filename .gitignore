@@ -7,6 +7,7 @@ calculateCRPS.m
 simulateSplitModel.m
 simulateWithWendland.m
 results/*
+unlisted/*
 *.tar.gz
 data/6 hour time resolution neutral temp full resolution.mat
 
